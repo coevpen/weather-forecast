@@ -1,0 +1,130 @@
+:root{
+    --primary-color: rgba(178, 127, 236, 0.781);
+    --secondary-color: rgba(52, 9, 170, 0.781);
+    --text-color: rgba(255, 255, 255, 0.781);
+    --mainBgColor: rgba(194, 207, 250, 0.781);
+    --cardBodyColor: rgba(145, 168, 243, 0.781);
+    --fontTextSize: 1.3rem;
+}
+
+body{
+    background-color: var(--mainBgColor);
+}
+
+main{
+    margin: 20px auto;
+    width: 100%;
+}
+
+/* hero styling */
+.hero{
+    margin: 50px 0 0 0;
+    width: 100%;
+    padding: 10px 0 10px 0;
+    background-image: linear-gradient(to bottom right, var(--primary-color), var(--secondary-color))
+}
+
+h1 {
+    text-align: center;
+    color: var(--text-color);
+}
+/* end of hero styling */
+
+/* for the city weather info */
+ul{
+    list-style: none;
+    padding: 4px;
+}
+
+ul li{
+    color: black;
+
+}
+
+/* Cards */
+
+.card{
+    margin: 0 0 20px 0;
+    border: 1px solid var(--secondary-color);
+    background-color: var(--mainBgColor);
+}
+
+
+.cityCard{
+    margin: 10px 0 0 3px;
+}
+
+.cityCard h3{
+    margin-left: 16px;
+}
+
+.card-body{
+    padding: 15px;
+}
+
+.form-input{
+    display: block;
+    width: 100%;
+    padding: 5px 0 5px 5px;
+    font-size: 14px;
+    border: 2px solid var(--secondary-color);
+    border-radius: .3rem;
+    font-size: 24px;
+}
+
+/* Form Button */
+.searchBtn{
+    margin: 5px 0;
+    padding: 6px 5px;
+    width: 100%;
+    color: var(--text-color);
+    background-color:var(--secondary-color);
+    font-size: var(--fontTextSize);
+}
+
+/* City  Buttons */
+
+#cityButtons{
+    margin: 0 0 20px 3px;
+    background-color: none;
+    display: block;
+    flex-wrap: wrap;
+}
+
+.cityBtn{
+    margin: 10px 0;
+    width:100%;
+    color: var(--text-color);
+    background-color:var(--primary-color);
+    font-size: var(--fontTextSize);
+}
+
+/* City info container */
+
+.cityInfo{
+    margin: 10px 0 0 2px;
+}
+
+
+/* Five Day Forcast section*/
+.belowForecast{
+    margin-top: 10px;
+    text-align: left;
+}
+
+.fiveDayContainer{
+    padding: 0;
+    display: flex;
+    justify-content: space-around;
+    
+}
+
+.fiveDay{
+    width: 220px;
+    font-size: var(--fontTextSize);
+
+}
+
+.fiveDay h3, .cityInfo h3{
+    color: var(--secondary-color);
+}

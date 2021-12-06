@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/4.3.1/css/bootstrap.min.css">
+    <link rel="stylesheet" href="./assets/css/style.css"/>
+    <title>Weather Forecast</title>
+</head>
+<body class="flex column min-100-vh">
+    <header class="hero">
+        <h1>Weather Forecast</h1>
+    </header>
+    
+    <main class="row justify-space-between">
+        <div class="col-12 col-md-4">
+            <!-- search bar for city -->
+            <div class="card cityCard">
+                <h3>Search for a City:</h3>
+                <form id="city-search" class="card-body">
+                    <input name="city" id="city" type="text" placeholder="San Antonio" autofocus="true" class="form-input" />
+                    <button type="submit" class="searchBtn">Search</button>
+                    </form>
+            </div>
+
+            <!-- Where the buttons for saved cities are dynamically created -->
+            <div id="cityButtons">
+                <button class="cityBtn">Example Button</button>
+                <button class="cityBtn">Example Button2</button>
+                <button class="cityBtn">Example Button3</button>
+            </div>
+        </div>
+
+        <!-- city weather info here -->
+        <div class="col-12 col-md-8">
+            <div class="card cityInfo">
+                <h3>Example City Title (2/30/21)</h3>
+                <ul>
+                    <li>Temp: info</li>
+                    <li>Wind: MPH</li>
+                    <li>Humidity: 46%</li>
+                    <li>UV index: hot bro</li>
+                </ul>
+            </div>
+
+            <!-- 5-day forecast dynamically created -->
+            <div class="belowForecast">
+                <h3>5-day Forecast:</h3>
+                <div class="fiveDayContainer row justify-space-between">
+                    <div class="card fiveDay">
+                        <h3>3/31/21</h3>
+                        <ul>
+                            <li>Temp: info</li>
+                            <li>Wind: MPH</li>
+                            <li>Humidity: 46%</li>
+                        </ul>
+                    </div>
+                    <div class="card fiveDay">
+                        <h3>3/31/21</h3>
+                        <ul>
+                            <li>Temp: info</li>
+                            <li>Wind: MPH</li>
+                            <li>Humidity: 46%</li>
+                        </ul>
+                    </div>
+                    <div class="card fiveDay">
+                        <h3>3/31/21</h3>
+                        <ul>
+                            <li>Temp: info</li>
+                            <li>Wind: MPH</li>
+                            <li>Humidity: 46%</li>
+                        </ul>
+                    </div>
+                    <div class="card fiveDay">
+                        <h3>3/31/21</h3>
+                        <ul>
+                            <li>Temp: info</li>
+                            <li>Wind: MPH</li>
+                            <li>Humidity: 46%</li>
+                        </ul>
+                    </div>
+                    <div class="card fiveDay">
+                        <h3>3/31/21</h3>
+                        <ul>
+                            <li>Temp: info</li>
+                            <li>Wind: MPH</li>
+                            <li>Humidity: 46%</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <script src="./assets/js/script.js"></script>
+</body>
+</html>
