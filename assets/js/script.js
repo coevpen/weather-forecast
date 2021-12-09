@@ -1,8 +1,5 @@
-// gets the five day container to create forecast in later
-var fiveDayContainer = document.querySelector(".fiveDayContainer");
-
 // gest the main section for the current forecast
-var cityInfoEl = document.querySelector(".cityInfo");
+var cityInfoEl = document.querySelector("#cityInfo");
 
 // gets the section to create buttons dynamically
 var cityBtnContainer = document.querySelector("#cityButtons");
@@ -25,12 +22,10 @@ function citySubmitHandler(event){
     var cityNameInput = cityInput.value.trim();
 
     if(cityNameInput){
+        cityInfoEl.textContent = "";
         getCityData(cityNameInput);
         cityInput.value = "";
         
-    }
-    else{
-        alert("Please enter a city name");
     }
 
 };
@@ -70,6 +65,8 @@ function getCityData(cityNameInput){
 
 // displays the current weather results
 function displayWeather(data, cityNameInput){
+    // adds the styling to the box so a border isn't showing on a blank page
+    cityInfoEl.classList.add("card");
 
     // puts city in array and saves current array to localStorage
     cityInfoSaved.push(data);
@@ -101,9 +98,9 @@ function displayWeather(data, cityNameInput){
     var infoLiHumid = document.createElement("li");
     var infoLiUv = document.createElement("li");
 
-    infoLiTemp.textContent = "Temp: " + city.temperature;
+    infoLiTemp.innerHTML = "Temp: " + city.temperature + "℉";
     infoLiWind.textContent = "Wind: " + city.windSpeed + " MPH";
-    infoLiHumid.textContent = "Humidity: " + city.humidity;
+    infoLiHumid.textContent = "Humidity: " + city.humidity + "%";
     infoLiUv.innerHTML = "UV Index: " + "<span id='colorCode'> " + city.uvIndex + " </span>";
 
     infoUL.appendChild(infoLiTemp);
@@ -124,15 +121,42 @@ function displayWeather(data, cityNameInput){
         colorCode.setAttribute("style", "background-color: rgba(255, 82, 82, 0.863);");
     }
 
+    var fiveDayH3 = document.querySelector(".belowForecast");
+    fiveDayH3.innerHTML = "<h3>5-Day Forecast:<h3><div class='fiveDayContainer row justify-space-between'>";
+    // gets the five day container to create forecast in later
+    var fiveDayContainer = document.querySelector(".fiveDayContainer");
 
     // to display the five-day forecast
     for(var i = 0; i < 5; i++){
-        
+        var div = document.createElement("div");
+        div.className = "card";
+        div.classList.add("fiveDay");
+
+        var dailyDate = document.createElement("h3");
+        dailyDate.textContent = "Placeholder Date"; 
+        div.appendChild(dailyDate);
+
+        var dailyUL = document.createElement("ul");
+        var dailyLiTemp = document.createElement("li");
+        var dailyLiWind = document.createElement("li");
+        var dailyLiHumid = document.createElement("li");
+
+        dailyLiTemp.textContent = "Temp: " + data[1].daily[i].temp.day + "℉";
+        dailyLiWind.textContent = "Wind: " + data[1].daily[i].wind_speed + " MPH";
+        dailyLiHumid.textContent = "Humidity: " + data[1].daily[i].humidity + "%";
+
+        dailyUL.appendChild(dailyLiTemp);
+        dailyUL.appendChild(dailyLiWind);
+        dailyUL.appendChild(dailyLiHumid);
+
+
+        div.appendChild(dailyUL);
+
+
+
+        // displays the div
+        fiveDayContainer.appendChild(div);
     }
-
-
-
-
 };
 
 
