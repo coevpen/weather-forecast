@@ -88,7 +88,7 @@ function displayWeather(data, cityNameInput){
 
     console.log(data);
 
-
+    // to display current weather in main container
     var nameH3 = document.createElement("h3");
     nameH3.textContent = city.cityName;
     cityInfoEl.appendChild(nameH3); 
@@ -104,14 +104,32 @@ function displayWeather(data, cityNameInput){
     infoLiTemp.textContent = "Temp: " + city.temperature;
     infoLiWind.textContent = "Wind: " + city.windSpeed + " MPH";
     infoLiHumid.textContent = "Humidity: " + city.humidity;
-    infoLiUv.textContent = "UV Index: " + city.uvIndex;
-  
+    infoLiUv.innerHTML = "UV Index: " + "<span id='colorCode'> " + city.uvIndex + " </span>";
+
     infoUL.appendChild(infoLiTemp);
     infoUL.appendChild(infoLiWind );
     infoUL.appendChild(infoLiHumid);
     infoUL.appendChild(infoLiUv);
 
-    //if statement about the UV index color coding
+    // UV index color coding: favorable/moderate/severe
+    var severity = parseInt(city.uvIndex);
+    var colorCode = document.querySelector("#colorCode");
+    if(severity < 2){
+        colorCode.setAttribute("style", "background-color: rgba(145, 238, 150, 0.781);");
+    }
+    else if(severity > 2  && severity < 6){
+        colorCode.setAttribute("style", "background-color: rgba(255, 251, 36, 0.781);");
+    }
+    else{
+        colorCode.setAttribute("style", "background-color: rgba(255, 82, 82, 0.863);");
+    }
+
+
+    // to display the five-day forecast
+    for(var i = 0; i < 5; i++){
+        
+    }
+
 
 
 
@@ -121,3 +139,6 @@ function displayWeather(data, cityNameInput){
 // for the form
 citySubmit.addEventListener("submit", citySubmitHandler);
 
+
+//TODO: Add the icons and dates
+//TODO: Add the buttons

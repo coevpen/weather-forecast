@@ -99,12 +99,16 @@ ul li{
     font-size: var(--fontTextSize);
 }
 
-/* City info container */
+/* Current weather container */
 
 .cityInfo{
     margin: 10px 0 0 2px;
+    font-size: var(--fontTextSize);
 }
 
+.cityInfo h3{
+    font-size: 32px;
+}
 
 /* Five Day Forcast section*/
 .belowForecast{
