@@ -13,7 +13,9 @@ var APIkey = "ac2d64855d7c13923498bf1911bc7aa8";
 
 // gets in the high scores or starts a new array if none
 var cityInfoSaved = JSON.parse(localStorage.getItem("cities")) ?? [];
-console.log(cityInfoSaved);
+
+// gets the search buttons
+var searchBtnEL = document.querySelector(".searchBtn");
 
 // gets the city name from the form and sends it to the API fetch
 function citySubmitHandler(event){
@@ -23,16 +25,18 @@ function citySubmitHandler(event){
     var cityNameInput = cityInput.value.trim();
 
     if(cityNameInput){
-        cityInfoEl.textContent = "";
+        // calls getCityData to fetch the info from the API
         getCityData(cityNameInput);
-        cityInput.value = "";
-        
     }
 
 };
 
 // fetches the API info
 function getCityData(cityNameInput){
+    // clears the containers so there's no duplication
+    cityInfoEl.textContent = "";
+    cityInput.value = "";
+
     // formats the weather api url for current weather
     var currentDayURL = "https://api.openweathermap.org/data/2.5/weather?q=" + cityNameInput + "&units=imperial" + "&appid=" + APIkey;
    
@@ -68,11 +72,7 @@ function getCityData(cityNameInput){
 function displayWeather(data){
     // adds the styling to the box so a border isn't showing on a blank page
     cityInfoEl.classList.add("card");
-
-    // puts city in array and saves current array to localStorage
-    cityInfoSaved.push(data);
-    localStorage.setItem("cities", JSON.stringify(data));
-
+   
     // creates a city object with the needed information
     let city =
     {
@@ -84,6 +84,15 @@ function displayWeather(data){
         cloudInfo: data[0].weather[0].description,
         weatherIcon: data[0].weather[0].icon
     };
+
+    // if new city, puts city in array and saves current array to localStorage
+    if(!cityInfoSaved.includes(city.cityName)){
+        cityInfoSaved.push(city.cityName);
+        localStorage.setItem("cities", JSON.stringify(cityInfoSaved));
+            
+        // creates a button for the search history. User can click on the button to make a new weather call
+        searchHistoryBtns(city.cityName);
+    }
 
     // grabs the current date: sends the data, filler number, 1 to indicate it's the current weather
     var currDate = getTheDate(data, 0, 1);
@@ -213,10 +222,25 @@ function getTheDate(data, i, currOrDaily){
     return theFullDate;
 };
 
+function searchHistoryBtns(cityName){
+    searchBtn = document.createElement("button");
+    searchBtn.setAttribute("data-city", cityName);
+    searchBtn.setAttribute("onclick", "getCityData('" + cityName + "')");
+    searchBtn.className = "cityBtn";
+    searchBtn.textContent = cityName;
+
+    cityBtnContainer.appendChild(searchBtn);
+
+}
+
+window.addEventListener('load', (event) => {
+    for(var i = 0; i < cityInfoSaved.length; i++){
+        searchHistoryBtns(cityInfoSaved[i]);
+    }
+});
 
 // for the form
 citySubmit.addEventListener("submit", citySubmitHandler);
 
 
-
-//TODO: Add the buttons
+//TODO: get buttons to work
