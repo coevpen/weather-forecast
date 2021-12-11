@@ -4,7 +4,7 @@ var cityInfoEl = document.querySelector("#cityInfo");
 // gets the section to create buttons dynamically
 var cityBtnContainer = document.querySelector("#cityButtons");
 
-// gets the form submission
+// gets the form submission elements
 var citySubmit = document.querySelector("#city-search");
 var cityInput = document.querySelector("#city");
 
@@ -17,18 +17,17 @@ var cityInfoSaved = JSON.parse(localStorage.getItem("cities")) ?? [];
 // gets the search buttons
 var searchBtnEL = document.querySelector(".searchBtn");
 
-// gets the city name from the form and sends it to the API fetch
+// gets the city name from the form and sends it to the API fetch once submit button pressed
 function citySubmitHandler(event){
     event.preventDefault();
 
-    // get the city name
+    // get the city name from form
     var cityNameInput = cityInput.value.trim();
 
     if(cityNameInput){
         // calls getCityData to fetch the info from the API
         getCityData(cityNameInput);
     }
-
 };
 
 // fetches the API info
@@ -68,12 +67,12 @@ function getCityData(cityNameInput){
     });
 };
 
-// displays the current weather results
+// displays the weather results
 function displayWeather(data){
     // adds the styling to the box so a border isn't showing on a blank page
     cityInfoEl.classList.add("card");
    
-    // creates a city object with the needed information
+    // creates a city object with the needed current weather information
     let city =
     {
         cityName: data[0].name,
@@ -85,7 +84,7 @@ function displayWeather(data){
         weatherIcon: data[0].weather[0].icon
     };
 
-    // if new city, puts city in array and saves current array to localStorage
+    // if new city, puts city in array and saves current array to localStorage as well as create a button for search history
     if(!cityInfoSaved.includes(city.cityName)){
         cityInfoSaved.push(city.cityName);
         localStorage.setItem("cities", JSON.stringify(cityInfoSaved));
@@ -222,8 +221,9 @@ function getTheDate(data, i, currOrDaily){
     return theFullDate;
 };
 
+// dynamically creates the buttons for the city search history
 function searchHistoryBtns(cityName){
-    searchBtn = document.createElement("button");
+    let searchBtn = document.createElement("button");
     searchBtn.setAttribute("data-city", cityName);
     searchBtn.setAttribute("onclick", "getCityData('" + cityName + "')");
     searchBtn.className = "cityBtn";
@@ -233,14 +233,12 @@ function searchHistoryBtns(cityName){
 
 }
 
+// upon loading the page, create buttons from localstorage for the cities previousyl searched for
 window.addEventListener('load', (event) => {
     for(var i = 0; i < cityInfoSaved.length; i++){
         searchHistoryBtns(cityInfoSaved[i]);
     }
 });
 
-// for the form
+// event listener for the form
 citySubmit.addEventListener("submit", citySubmitHandler);
-
-
-//TODO: get buttons to work

@@ -11,11 +11,6 @@ body{
     background-color: var(--mainBgColor);
 }
 
-main{
-    margin: 20px auto;
-    width: 100%;
-}
-
 /* hero styling */
 .hero{
     margin: 50px 0 0 0;
@@ -29,6 +24,11 @@ h1 {
     color: var(--text-color);
 }
 /* end of hero styling */
+
+main{
+    margin: 20px auto;
+    width: 100%;
+}
 
 /* for the city weather info */
 ul{
@@ -61,7 +61,7 @@ ul li{
 .card-body{
     padding: 15px;
 }
-
+/* form input box */
 .form-input{
     display: block;
     width: 100%;
@@ -82,7 +82,7 @@ ul li{
     font-size: var(--fontTextSize);
 }
 
-/* City  Buttons */
+/* City search buttons */
 
 #cityButtons{
     margin: 0 0 20px 3px;
